@@ -1,35 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
+document.addEventListener('mousemove', (e) => {
     const cursor = document.querySelector('.cursor-follower');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
 
-    // Hover effect for cursor
-    const interactiveElements = document.querySelectorAll('a, button, .card');
-    
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform += ' scale(2)';
-            cursor.style.backgroundColor = 'transparent';
-            cursor.style.border = '2px solid var(--accent-color)';
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = cursor.style.transform.replace(' scale(2)', '');
-            cursor.style.backgroundColor = 'var(--accent-color)';
-            cursor.style.border = 'none';
-        });
+document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1.5)';
     });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    el.addEventListener('mouseleave', () => {
+        document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1)';
     });
 });
+
+// Background Music Logic
+document.addEventListener('click', function () {
+    const audio = document.getElementById('bg-music');
+    if (audio.paused) {
+        audio.volume = 0.5; // Set volume to 50%
+        audio.play().catch(error => {
+            console.log("Audio play failed:", error);
+        });
+    }
+}, { once: true }); // Run only once
