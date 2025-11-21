@@ -1,0 +1,352 @@
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-color: #ff00ff;
+    /* Neon Magenta */
+    --secondary-accent: #00ffff;
+    /* Cyan */
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+    /* Custom cursor */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* Custom Cursor */
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+    /* Darken slightly so text pops */
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    /* Stylish B&W look */
+    transition: all 0.5s ease;
+}
+
+.hero-image:hover {
+    filter: grayscale(0%) contrast(1);
+    /* Color on hover */
+    transform: scale(1.05);
+}
+
+h1.glitch {
+    font-size: 10vw;
+    line-height: 1;
+    position: relative;
+    color: var(--text-color);
+}
+
+h1.glitch::before,
+h1.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--accent-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+h1.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--secondary-accent);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* About Section */
+.about-section {
+    padding: 8rem 2rem;
+    background: #111;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    color: var(--secondary-accent);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    /* For image zoom effect */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 8rem 2rem;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.social-links {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.social-link:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Premium Notice */
+.premium-notice {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.premium-content {
+    background: linear-gradient(145deg, #1a1a1a, #000000);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.premium-content:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.2);
+}
+
+.telegram-profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+}
+
+.premium-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.premium-text strong {
+    color: var(--secondary-accent);
+    text-transform: uppercase;
+}
+
+/* Animations */
+@keyframes glitch-anim {
+    0% {
+        clip: rect(10px, 9999px, 30px, 0);
+    }
+
+    20% {
+        clip: rect(80px, 9999px, 100px, 0);
+    }
+
+    40% {
+        clip: rect(5px, 9999px, 60px, 0);
+    }
+
+    60% {
+        clip: rect(40px, 9999px, 20px, 0);
+    }
+
+    80% {
+        clip: rect(90px, 9999px, 10px, 0);
+    }
+
+    100% {
+        clip: rect(15px, 9999px, 70px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(60px, 9999px, 10px, 0);
+    }
+
+    20% {
+        clip: rect(10px, 9999px, 90px, 0);
+    }
+
+    40% {
+        clip: rect(90px, 9999px, 5px, 0);
+    }
+
+    60% {
+        clip: rect(20px, 9999px, 60px, 0);
+    }
+
+    80% {
+        clip: rect(5px, 9999px, 40px, 0);
+    }
+
+    100% {
+        clip: rect(80px, 9999px, 20px, 0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1.glitch {
+        font-size: 15vw;
+    }
+
+    .about-section h2,
+    .contact-section h2 {
+        font-size: 2.5rem;
+    }
+}
