@@ -1,17 +1,19 @@
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.cursor-follower');
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+if (window.innerWidth > 768) {
+    document.addEventListener('mousemove', (e) => {
+        const cursor = document.querySelector('.cursor-follower');
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 
-document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1.5)';
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1)';
+        });
     });
-    el.addEventListener('mouseleave', () => {
-        document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1)';
-    });
-});
+}
 
 // Background Music Logic
 document.addEventListener('click', function () {
